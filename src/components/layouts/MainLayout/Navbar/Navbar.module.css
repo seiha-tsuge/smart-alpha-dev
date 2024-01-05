@@ -1,0 +1,7 @@
+.actionIcon {
+  border: none;
+}
+
+.actionIcon:active {
+  transform: translateY(0);
+}

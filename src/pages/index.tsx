@@ -2,10 +2,12 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 
+import { getLayout } from "@/components/layouts/MainLayout";
+
 import { api } from "@/utils/api";
 import styles from "./index.module.css";
 
-export default function Home() {
+export const HomePage = () => {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
 
   return (
@@ -54,7 +56,7 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
 
 function AuthShowcase() {
   const { data: sessionData } = useSession();
@@ -79,3 +81,7 @@ function AuthShowcase() {
     </div>
   );
 }
+
+HomePage.getLayout = getLayout;
+
+export default HomePage;
