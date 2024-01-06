@@ -5,8 +5,6 @@ import { api } from "@/utils/api";
 
 import type { AppPropsWithLayout } from "@/types/next";
 
-import "@mantine/core/styles.css";
-
 const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
