@@ -8,38 +8,41 @@ import { useFinancialResultsQueryForm } from "@/objects/financial-results/form";
 
 import { addDaysToDate, subtractDaysFromDate } from "@/utils/date";
 
+import classes from "./DateHeader.module.css";
+
 export const DateHeader = () => {
-  const { register, getValues, setValue } = useFinancialResultsQueryForm();
+  const form = useFinancialResultsQueryForm();
 
   const incrementDate = () => {
-    const currentDate = getValues("date");
-    const incrementedDate = addDaysToDate(currentDate, 1);
-    setValue("date", incrementedDate);
+    const date = form.getInputProps("date").value as Date;
+    form.setFieldValue("date", addDaysToDate(date, 1));
   };
 
   const decrementDate = () => {
-    const currentDate = getValues("date");
-    const decrementedDate = subtractDaysFromDate(currentDate, 1);
-    setValue("date", decrementedDate);
-  };
-
-  const handleDateChange = (date: Date | null) => {
-    setValue("date", date);
+    const date = form.getInputProps("date").value as Date;
+    form.setFieldValue("date", subtractDaysFromDate(date, 1));
   };
 
   return (
-    <Group>
-      <ActionIcon variant="transparent" onClick={decrementDate}>
+    <Group className={classes.root}>
+      <ActionIcon
+        variant="transparent"
+        onClick={decrementDate}
+        className={classes.actionIcon}
+      >
         <IconChevronLeft />
       </ActionIcon>
 
       <DatePickerInput
         valueFormat="YYYY/MM/DD"
-        {...register("date")}
-        onChange={handleDateChange}
+        {...form.getInputProps("date")}
       />
 
-      <ActionIcon variant="transparent" onClick={incrementDate}>
+      <ActionIcon
+        variant="transparent"
+        onClick={incrementDate}
+        className={classes.actionIcon}
+      >
         <IconChevronRight />
       </ActionIcon>
     </Group>

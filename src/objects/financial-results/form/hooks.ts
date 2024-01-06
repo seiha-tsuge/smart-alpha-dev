@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm } from "@mantine/form";
 
 import { FinancialResultsInitialValues } from "./initialValues";
 
@@ -8,6 +8,6 @@ export interface FinancialResultsQueryForm {
 
 export const useFinancialResultsQueryForm = () => {
   return useForm<FinancialResultsQueryForm>({
-    defaultValues: FinancialResultsInitialValues.query,
+    initialValues: FinancialResultsInitialValues.query,
   });
 };
