@@ -1,5 +1,6 @@
 import React from "react";
 import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 import {
   Box,
@@ -38,6 +39,7 @@ export const UserButton = () => {
               fullWidth
               variant="default"
               leftSection={<IconLogout size={14} />}
+              onClick={() => signOut()}
             >
               Sign out
             </Button>
