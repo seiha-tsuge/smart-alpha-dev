@@ -1,4 +1,5 @@
 import React from "react";
+import { useSession } from "next-auth/react";
 
 import {
   Box,
@@ -13,19 +14,24 @@ import {
 import { IconLogout } from "@tabler/icons-react";
 
 export const UserButton = () => {
+  const { data: sessionData } = useSession();
+  if (!sessionData) return null;
+
+  const { name, image } = sessionData.user;
+
   return (
     <Popover width={296} trapFocus position="bottom-end" shadow="md">
       <Popover.Target>
         <UnstyledButton>
-          <Avatar src="" alt="it's me" size="md" />
+          <Avatar src={image} alt="it's me" size="md" />
         </UnstyledButton>
       </Popover.Target>
       <Popover.Dropdown p={0}>
         <Box p={16}>
           <Stack>
             <Group>
-              <Avatar src="" alt="it's me" size="md" />
-              <Text>Smart Alpha</Text>
+              <Avatar src={image} alt="it's me" size="md" />
+              <Text>{name}</Text>
             </Group>
             <Button
               justify="center"
