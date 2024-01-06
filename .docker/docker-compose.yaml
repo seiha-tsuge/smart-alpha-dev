@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0.23
+    platform: linux/amd64
+    container_name: smart-alpha-dev-mysql
+    command: "--default-authentication-plugin=mysql_native_password"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: smart_alpha
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
