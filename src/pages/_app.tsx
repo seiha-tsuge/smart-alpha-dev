@@ -10,7 +10,6 @@ import { type AppProps } from "next/app";
 import { type ReactElement, type ReactNode } from "react";
 
 import "@mantine/core/styles.css";
-import "@/styles/globals.css";
 
 const theme = createTheme({
   /** Put your mantine theme override here */
