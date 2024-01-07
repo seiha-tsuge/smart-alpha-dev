@@ -97,10 +97,40 @@ export class JQuantsApi implements IJQuantsApi {
       if (!response.ok) {
         const errorData = (await response.json()) as ErrorResponse;
 
-        throw new TRPCError({
-          code: 'BAD_REQUEST',
-          message: errorData.message,
-        });
+        if (response.status === 400) {
+          throw new TRPCError({
+            code: 'BAD_REQUEST',
+            message: errorData.message,
+          });
+        }
+
+        if (response.status === 401) {
+          throw new TRPCError({
+            code: 'UNAUTHORIZED',
+            message: errorData.message,
+          });
+        }
+
+        if (response.status === 403) {
+          throw new TRPCError({
+            code: 'FORBIDDEN',
+            message: errorData.message,
+          });
+        }
+
+        if (response.status === 413) {
+          throw new TRPCError({
+            code: 'PAYLOAD_TOO_LARGE',
+            message: errorData.message,
+          });
+        }
+
+        if (response.status === 500) {
+          throw new TRPCError({
+            code: 'INTERNAL_SERVER_ERROR',
+            message: errorData.message,
+          });
+        }
       }
 
       const data = (await response.json()) as GetFinancialStatementsResponse;
