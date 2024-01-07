@@ -96,7 +96,7 @@ export class JQuantsApi implements IJQuantsApi {
       const data = (await response.json()) as GetFinancialStatementsResponse;
       return data;
     } catch (error) {
-      console.error('Error fetching auth token:', error);
+      console.error('Error:', error);
       throw error;
     }
   }
