@@ -11,6 +11,15 @@ generator client {
     provider = "prisma-client-js"
 }
 
+model JQuants {
+    id                       Int       @id @default(autoincrement())
+    refresh_token            String?
+    id_token                 String?
+    refresh_token_expires_at DateTime?
+    id_token_expires_at      DateTime?
+    updatedAt                DateTime  @updatedAt
+}
+
 model Post {
     id        Int      @id @default(autoincrement())
     name      String
