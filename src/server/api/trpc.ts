@@ -17,6 +17,15 @@ import { getServerAuthSession } from "@/server/auth";
 import { db } from "@/server/db";
 
 import { JQuantsApi } from "@/server/infra/api/jquants";
+import { JQuantsDataRepository } from "@/server/infra/db/repository/jquants/jquants-data-repository";
+import { PostTokenUseCase } from "@/server/app/jquants/post-token-usecase";
+
+import { JQuantsDataQS } from "@/server/infra/db/query-service/jquants/jquants-data-qs";
+import { GetTokenUseCase } from "@/server/app/jquants/get-token-usecase";
+
+import { JQuantsData } from "@/server/domain/jquants/jquants-data";
+
+import { subtractMinuteFromDate, isAfterDate } from "@/utils/date";
 
 /**
  * 1. CONTEXT
@@ -122,26 +131,34 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
-  const jQuants = await ctx.db.jQuants.findFirst({
-    where: { id: 1 },
-  });
 
-  if (!jQuants) {
-    const jQuantsApi = new JQuantsApi();
+  const jQuantsApi = new JQuantsApi();
+  const jQuantsDataRepo = new JQuantsDataRepository(ctx.db);
+  const postTokenUseCase = new PostTokenUseCase(jQuantsApi, jQuantsDataRepo);
 
-    const { refreshToken, refreshTokenExpiresAt } =
-      await jQuantsApi.getRefreshToken();
-    const { idToken, idTokenExpiresAt } = await jQuantsApi.getIdToken(
-      refreshToken
-    );
-    await ctx.db.jQuants.create({
-      data: {
-        refresh_token: refreshToken,
-        refresh_token_expires_at: refreshTokenExpiresAt,
-        id_token: idToken,
-        id_token_expires_at: idTokenExpiresAt,
-      },
+  let JQuantsDataEntity: JQuantsData;
+
+  const jQuantsDataQS = new JQuantsDataQS(ctx.db);
+  const getTokenUseCase = new GetTokenUseCase(jQuantsDataQS);
+  const jQuantsDataDTO = await getTokenUseCase.getToken();
+  if (!jQuantsDataDTO) {
+    JQuantsDataEntity = await postTokenUseCase.createToken();
+  } else {
+    JQuantsDataEntity = new JQuantsData({
+      ...jQuantsDataDTO.getAllProperties(),
     });
+  }
+
+  const { refreshTokenExpiresAt, idTokenExpiresAt } =
+    JQuantsDataEntity.getAllProperties();
+  const subtractedMinute = subtractMinuteFromDate(new Date(), 10);
+  if (isAfterDate(refreshTokenExpiresAt, subtractedMinute)) {
+    JQuantsDataEntity = await postTokenUseCase.updateRefreshToken(
+      JQuantsDataEntity
+    );
+  }
+  if (isAfterDate(idTokenExpiresAt, subtractedMinute)) {
+    JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 
   return next({
