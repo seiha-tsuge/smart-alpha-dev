@@ -1,27 +1,21 @@
-import type { IJQuantsApi } from "@/server/infra/api/jquants/interfaces";
-import { JQuantsData } from "@/server/domain/jquants/jquants-data";
-import type { IJQuantsDataRepository } from "@/server/domain/jquants/jquants-data-repository";
-import { createRandomIdNumber } from "@/utils/random";
+import type { IJQuantsApi } from '@/server/infra/api/jquants/interfaces';
+import { JQuantsData } from '@/server/domain/jquants/jquants-data';
+import type { IJQuantsDataRepository } from '@/server/domain/jquants/jquants-data-repository';
+import { createRandomIdNumber } from '@/utils/random';
 
 export class PostTokenUseCase {
   private readonly jQuantsApi: IJQuantsApi;
   private readonly jQuantsDataRepo: IJQuantsDataRepository;
 
-  public constructor(
-    jQuantsApi: IJQuantsApi,
-    jQuantsDataRepo: IJQuantsDataRepository
-  ) {
+  public constructor(jQuantsApi: IJQuantsApi, jQuantsDataRepo: IJQuantsDataRepository) {
     this.jQuantsApi = jQuantsApi;
     this.jQuantsDataRepo = jQuantsDataRepo;
   }
 
   public async createToken() {
-    const { refreshToken, refreshTokenExpiresAt } =
-      await this.jQuantsApi.getRefreshToken();
+    const { refreshToken, refreshTokenExpiresAt } = await this.jQuantsApi.getRefreshToken();
 
-    const { idToken, idTokenExpiresAt } = await this.jQuantsApi.getIdToken(
-      refreshToken
-    );
+    const { idToken, idTokenExpiresAt } = await this.jQuantsApi.getIdToken(refreshToken);
 
     const jQuantsDataEntity = new JQuantsData({
       id: createRandomIdNumber(),
@@ -31,16 +25,13 @@ export class PostTokenUseCase {
       idTokenExpiresAt,
     });
 
-    const savedJQuantsDataEntity = await this.jQuantsDataRepo.create(
-      jQuantsDataEntity
-    );
+    const savedJQuantsDataEntity = await this.jQuantsDataRepo.create(jQuantsDataEntity);
 
     return savedJQuantsDataEntity;
   }
 
   public async updateRefreshToken(jQuantsData: JQuantsData) {
-    const { refreshToken, refreshTokenExpiresAt } =
-      await this.jQuantsApi.getRefreshToken();
+    const { refreshToken, refreshTokenExpiresAt } = await this.jQuantsApi.getRefreshToken();
 
     const { id, idToken, idTokenExpiresAt } = jQuantsData.getAllProperties();
     const jQuantsDataEntity = new JQuantsData({
@@ -51,19 +42,14 @@ export class PostTokenUseCase {
       idTokenExpiresAt,
     });
 
-    const savedJQuantsDataEntity = await this.jQuantsDataRepo.save(
-      jQuantsDataEntity
-    );
+    const savedJQuantsDataEntity = await this.jQuantsDataRepo.save(jQuantsDataEntity);
 
     return savedJQuantsDataEntity;
   }
 
   public async updateIdToken(jQuantsData: JQuantsData) {
-    const { id, refreshToken, refreshTokenExpiresAt } =
-      jQuantsData.getAllProperties();
-    const { idToken, idTokenExpiresAt } = await this.jQuantsApi.getIdToken(
-      refreshToken
-    );
+    const { id, refreshToken, refreshTokenExpiresAt } = jQuantsData.getAllProperties();
+    const { idToken, idTokenExpiresAt } = await this.jQuantsApi.getIdToken(refreshToken);
 
     const jQuantsDataEntity = new JQuantsData({
       id,
@@ -73,9 +59,7 @@ export class PostTokenUseCase {
       idTokenExpiresAt,
     });
 
-    const savedJQuantsDataEntity = await this.jQuantsDataRepo.save(
-      jQuantsDataEntity
-    );
+    const savedJQuantsDataEntity = await this.jQuantsDataRepo.save(jQuantsDataEntity);
 
     return savedJQuantsDataEntity;
   }

@@ -7,13 +7,13 @@ import type {
   GetIdTokenData,
   GetFinancialStatementsRequest,
   GetFinancialStatementsResponse,
-} from "./interfaces";
-import { env } from "@/env";
-import { addDaysToDate } from "@/utils/date";
+} from './interfaces';
+import { env } from '@/env';
+import { addDaysToDate } from '@/utils/date';
 
 export class JQuantsApi implements IJQuantsApi {
   public async getRefreshToken(): Promise<GetRefreshTokenResponse> {
-    const url = "https://api.jquants.com/v1/token/auth_user";
+    const url = 'https://api.jquants.com/v1/token/auth_user';
     const body = JSON.stringify({
       mailaddress: env.J_QUANTS_ID,
       password: env.J_QUANTS_SECRET,
@@ -21,9 +21,9 @@ export class JQuantsApi implements IJQuantsApi {
 
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body,
       });
@@ -39,7 +39,7 @@ export class JQuantsApi implements IJQuantsApi {
         refreshTokenExpiresAt: addDaysToDate(new Date(), 7),
       };
     } catch (error) {
-      console.error("Error fetching auth token:", error);
+      console.error('Error fetching auth token:', error);
       throw error;
     }
   }
@@ -49,7 +49,7 @@ export class JQuantsApi implements IJQuantsApi {
 
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
       });
 
       if (!response.ok) {
@@ -63,7 +63,7 @@ export class JQuantsApi implements IJQuantsApi {
         idTokenExpiresAt: addDaysToDate(new Date(), 1),
       };
     } catch (error) {
-      console.error("Error fetching auth token:", error);
+      console.error('Error fetching auth token:', error);
       throw error;
     }
   }
@@ -76,9 +76,9 @@ export class JQuantsApi implements IJQuantsApi {
   }: GetFinancialStatementsRequest): Promise<GetFinancialStatementsResponse> {
     const params = new URLSearchParams();
 
-    if (code) params.append("code", code);
-    if (date) params.append("date", date);
-    if (pagination_key) params.append("pagination_key", pagination_key);
+    if (code) params.append('code', code);
+    if (date) params.append('date', date);
+    if (pagination_key) params.append('pagination_key', pagination_key);
 
     const url = `https://api.jquants.com/v1/fins/statements?${params.toString()}`;
     const headers = {
@@ -96,7 +96,7 @@ export class JQuantsApi implements IJQuantsApi {
       const data = (await response.json()) as GetFinancialStatementsResponse;
       return data;
     } catch (error) {
-      console.error("Error fetching auth token:", error);
+      console.error('Error fetching auth token:', error);
       throw error;
     }
   }

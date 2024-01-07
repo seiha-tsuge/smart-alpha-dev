@@ -7,25 +7,25 @@
  * need to use are documented accordingly near the end.
  */
 
-import { initTRPC, TRPCError } from "@trpc/server";
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
-import superjson from "superjson";
-import { ZodError } from "zod";
+import { initTRPC, TRPCError } from '@trpc/server';
+import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
+import { type Session } from 'next-auth';
+import superjson from 'superjson';
+import { ZodError } from 'zod';
 
-import { getServerAuthSession } from "@/server/auth";
-import { db } from "@/server/db";
+import { getServerAuthSession } from '@/server/auth';
+import { db } from '@/server/db';
 
-import { JQuantsApi } from "@/server/infra/api/jquants";
-import { JQuantsDataRepository } from "@/server/infra/db/repository/jquants/jquants-data-repository";
-import { PostTokenUseCase } from "@/server/app/jquants/post-token-usecase";
+import { JQuantsApi } from '@/server/infra/api/jquants';
+import { JQuantsDataRepository } from '@/server/infra/db/repository/jquants/jquants-data-repository';
+import { PostTokenUseCase } from '@/server/app/jquants/post-token-usecase';
 
-import { JQuantsDataQS } from "@/server/infra/db/query-service/jquants/jquants-data-qs";
-import { GetTokenUseCase } from "@/server/app/jquants/get-token-usecase";
+import { JQuantsDataQS } from '@/server/infra/db/query-service/jquants/jquants-data-qs';
+import { GetTokenUseCase } from '@/server/app/jquants/get-token-usecase';
 
-import { JQuantsData } from "@/server/domain/jquants/jquants-data";
+import { JQuantsData } from '@/server/domain/jquants/jquants-data';
 
-import { subtractMinuteFromDate, isAfterDate } from "@/utils/date";
+import { subtractMinuteFromDate, isAfterDate } from '@/utils/date';
 
 /**
  * 1. CONTEXT
@@ -88,8 +88,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     };
   },
@@ -129,7 +128,7 @@ export const publicProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   // Mark the function as async
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
 
   const jQuantsApi = new JQuantsApi();
@@ -150,21 +149,11 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
     JQuantsDataEntity = await postTokenUseCase.createToken();
   }
 
-  const { refreshTokenExpiresAt, idTokenExpiresAt } =
-    JQuantsDataEntity.getAllProperties();
-  if (
-    isAfterDate(
-      refreshTokenExpiresAt,
-      subtractMinuteFromDate(refreshTokenExpiresAt, 10)
-    )
-  ) {
-    JQuantsDataEntity = await postTokenUseCase.updateRefreshToken(
-      JQuantsDataEntity
-    );
+  const { refreshTokenExpiresAt, idTokenExpiresAt } = JQuantsDataEntity.getAllProperties();
+  if (isAfterDate(refreshTokenExpiresAt, subtractMinuteFromDate(refreshTokenExpiresAt, 10))) {
+    JQuantsDataEntity = await postTokenUseCase.updateRefreshToken(JQuantsDataEntity);
   }
-  if (
-    isAfterDate(idTokenExpiresAt, subtractMinuteFromDate(idTokenExpiresAt, 10))
-  ) {
+  if (isAfterDate(idTokenExpiresAt, subtractMinuteFromDate(idTokenExpiresAt, 10))) {
     JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 

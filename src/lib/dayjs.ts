@@ -1,13 +1,9 @@
-import dayjs from "dayjs";
-import "dayjs/locale/ja";
+import dayjs from 'dayjs';
+import 'dayjs/locale/ja';
 
-import type {
-  Dayjs as _Dayjs,
-  ManipulateType as _ManipulateType,
-  ConfigType as _ConfigType,
-} from "dayjs";
+import type { Dayjs as _Dayjs, ManipulateType as _ManipulateType, ConfigType as _ConfigType } from 'dayjs';
 
-dayjs.locale("ja");
+dayjs.locale('ja');
 
 export default dayjs;
 

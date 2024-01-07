@@ -10,6 +10,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "format": "prettier --write './**/*.{js,ts,tsx,scss}'",
     "start": "next start"
   },
   "dependencies": {
@@ -46,9 +47,11 @@
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.54.0",
     "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.33",
     "postcss-preset-mantine": "^1.12.3",
     "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.1.1",
     "prisma": "^5.6.0",
     "typescript": "^5.1.6"
   },

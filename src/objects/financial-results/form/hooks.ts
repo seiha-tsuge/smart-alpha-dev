@@ -1,6 +1,6 @@
-import { useForm } from "@mantine/form";
+import { useForm } from '@mantine/form';
 
-import { FinancialResultsInitialValues } from "./initialValues";
+import { FinancialResultsInitialValues } from './initialValues';
 
 export interface FinancialResultsQueryForm {
   date: Date | null;

@@ -1,6 +1,6 @@
-import type { PrismaClient } from "@prisma/client";
-import type { IJQuantsDataRepository } from "@/server/domain/jquants/jquants-data-repository";
-import { JQuantsData } from "@/server/domain/jquants/jquants-data";
+import type { PrismaClient } from '@prisma/client';
+import type { IJQuantsDataRepository } from '@/server/domain/jquants/jquants-data-repository';
+import { JQuantsData } from '@/server/domain/jquants/jquants-data';
 
 export class JQuantsDataRepository implements IJQuantsDataRepository {
   private prismaClient: PrismaClient;
@@ -10,8 +10,7 @@ export class JQuantsDataRepository implements IJQuantsDataRepository {
   }
 
   public async create(jQuantsDataEntity: JQuantsData): Promise<JQuantsData> {
-    const { refreshToken, idToken, refreshTokenExpiresAt, idTokenExpiresAt } =
-      jQuantsDataEntity.getAllProperties();
+    const { refreshToken, idToken, refreshTokenExpiresAt, idTokenExpiresAt } = jQuantsDataEntity.getAllProperties();
 
     const savedJQuantsDataModel = await this.prismaClient.jQuants.create({
       data: {
@@ -34,13 +33,7 @@ export class JQuantsDataRepository implements IJQuantsDataRepository {
   }
 
   public async save(jQuantsDataEntity: JQuantsData): Promise<JQuantsData> {
-    const {
-      id,
-      refreshToken,
-      idToken,
-      refreshTokenExpiresAt,
-      idTokenExpiresAt,
-    } = jQuantsDataEntity.getAllProperties();
+    const { id, refreshToken, idToken, refreshTokenExpiresAt, idTokenExpiresAt } = jQuantsDataEntity.getAllProperties();
 
     const savedJQuantsDataModel = await this.prismaClient.jQuants.update({
       where: { id },

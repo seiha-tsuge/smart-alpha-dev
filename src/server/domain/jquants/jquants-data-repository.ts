@@ -1,4 +1,4 @@
-import { type JQuantsData } from "./jquants-data";
+import { type JQuantsData } from './jquants-data';
 
 export interface IJQuantsDataRepository {
   create(data: JQuantsData): Promise<JQuantsData>;

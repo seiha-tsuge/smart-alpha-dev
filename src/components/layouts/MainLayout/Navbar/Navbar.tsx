@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react';
+import Link from 'next/link';
 
-import { NavLink, Tooltip, ActionIcon } from "@mantine/core";
-import { IconBuilding } from "@tabler/icons-react";
+import { NavLink, Tooltip, ActionIcon } from '@mantine/core';
+import { IconBuilding } from '@tabler/icons-react';
 
-import { ROUTE } from "@/consts/route";
+import { ROUTE } from '@/consts/route';
 
-import classes from "./Navbar.module.css";
+import classes from './Navbar.module.css';
 
 interface NavbarProps {
   isOpen: boolean;
@@ -15,9 +15,7 @@ interface NavbarProps {
 export const Navbar = ({ isOpen }: NavbarProps) => {
   const [active, setActive] = useState(0);
 
-  const navLinks = [
-    { label: "決算速報", href: ROUTE.HOME, icon: IconBuilding },
-  ];
+  const navLinks = [{ label: '決算速報', href: ROUTE.HOME, icon: IconBuilding }];
 
   const renderNavLinks = navLinks.map((item, index) => {
     const { label, href, icon: Icon } = item;
@@ -31,19 +29,19 @@ export const Navbar = ({ isOpen }: NavbarProps) => {
         label={label}
         leftSection={<Icon />}
         active={isActive}
-        p="lg"
+        p='lg'
         h={64}
         onClick={() => setActive(index)}
       />
     ) : (
-      <Tooltip key={index} label={label} position="right" withArrow>
+      <Tooltip key={index} label={label} position='right' withArrow>
         <ActionIcon
           component={Link}
           href={href}
           h={64}
-          w="100%"
+          w='100%'
           radius={0}
-          variant={isActive ? "light" : "default"}
+          variant={isActive ? 'light' : 'default'}
           onClick={() => setActive(index)}
           className={classes.actionIcon}
         >

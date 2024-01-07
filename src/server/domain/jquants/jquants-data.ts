@@ -11,13 +11,7 @@ export class JQuantsData {
     refreshTokenExpiresAt: Date;
     idTokenExpiresAt: Date;
   }) {
-    const {
-      id,
-      refreshToken,
-      idToken,
-      refreshTokenExpiresAt,
-      idTokenExpiresAt,
-    } = props;
+    const { id, refreshToken, idToken, refreshTokenExpiresAt, idTokenExpiresAt } = props;
     this.id = id;
     this.refreshToken = refreshToken;
     this.idToken = idToken;

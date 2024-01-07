@@ -1,6 +1,6 @@
-import type { PrismaClient } from "@prisma/client";
-import { JQuantsDataDTO } from "@/server/app/jquants/query-service-interface/jquants-data-qs";
-import type { IJQuantsDataQS } from "@/server/app/jquants/query-service-interface/jquants-data-qs";
+import type { PrismaClient } from '@prisma/client';
+import { JQuantsDataDTO } from '@/server/app/jquants/query-service-interface/jquants-data-qs';
+import type { IJQuantsDataQS } from '@/server/app/jquants/query-service-interface/jquants-data-qs';
 
 export class JQuantsDataQS implements IJQuantsDataQS {
   private prismaClient: PrismaClient;

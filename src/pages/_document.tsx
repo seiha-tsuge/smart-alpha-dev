@@ -1,11 +1,11 @@
-import { Head, Html, Main, NextScript } from "next/document";
-import { ColorSchemeScript } from "@mantine/core";
+import { Head, Html, Main, NextScript } from 'next/document';
+import { ColorSchemeScript } from '@mantine/core';
 
 export default function Document() {
   return (
-    <Html lang="ja">
+    <Html lang='ja'>
       <Head>
-        <ColorSchemeScript defaultColorScheme="auto" />
+        <ColorSchemeScript defaultColorScheme='auto' />
       </Head>
       <body>
         <Main />

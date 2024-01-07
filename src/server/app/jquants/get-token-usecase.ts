@@ -1,4 +1,4 @@
-import type { IJQuantsDataQS } from "./query-service-interface/jquants-data-qs";
+import type { IJQuantsDataQS } from './query-service-interface/jquants-data-qs';
 
 export class GetTokenUseCase {
   private readonly jQuantsDataQS: IJQuantsDataQS;
