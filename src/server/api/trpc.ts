@@ -141,9 +141,7 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   const getTokenUseCase = new GetTokenUseCase(jQuantsDataQS);
   const jQuantsDataDTO = await getTokenUseCase.getToken();
   if (jQuantsDataDTO) {
-    JQuantsDataEntity = new JQuantsData({
-      ...jQuantsDataDTO.getAllProperties(),
-    });
+    JQuantsDataEntity = new JQuantsData({ ...jQuantsDataDTO.getAllProperties() });
   } else {
     // データがない場合は、新規に作成する
     JQuantsDataEntity = await postTokenUseCase.createToken();
