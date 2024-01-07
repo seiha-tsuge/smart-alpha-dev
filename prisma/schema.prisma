@@ -13,8 +13,8 @@ generator client {
 
 model JQuants {
     id                       Int      @id @default(autoincrement())
-    refresh_token            String
-    id_token                 String
+    refresh_token            String   @db.Text
+    id_token                 String   @db.Text
     refresh_token_expires_at DateTime
     id_token_expires_at      DateTime
     updatedAt                DateTime @updatedAt
