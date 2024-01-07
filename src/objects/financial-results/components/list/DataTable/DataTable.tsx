@@ -2,21 +2,34 @@ import React from 'react';
 
 import { DataTable as MantineDataTable } from 'mantine-datatable';
 
-export const DataTable = () => {
+import type { FinancialStatement } from '@/server/infra/api/jquants/interfaces';
+
+interface DataTableProps {
+  data?: FinancialStatement[];
+}
+
+export const DataTable = ({ data }: DataTableProps) => {
   return (
     <MantineDataTable
       highlightOnHover
-      records={[
-        { id: 1, name: 'Joe Biden', bornIn: 1942 },
-        { id: 2, name: 'Joe Biden', bornIn: 1942 },
-      ]}
+      records={data}
       columns={[
         {
-          accessor: 'id',
-          title: '#',
+          accessor: 'LocalCode',
+          title: '銘柄コード',
         },
-        { accessor: 'name' },
-        { accessor: 'bornIn' },
+        {
+          accessor: 'DisclosedDate',
+          title: '銘開示日',
+        },
+        {
+          accessor: 'DisclosedTime',
+          title: '開示時刻',
+        },
+        {
+          accessor: 'NetSales',
+          title: '売上高',
+        },
       ]}
     />
   );
