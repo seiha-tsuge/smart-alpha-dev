@@ -13,3 +13,8 @@ export function addDaysToDate(date: ConfigType, days: number): Date {
 export function subtractDaysFromDate(date: ConfigType, days: number): Date {
   return dayjs(date).subtract(days, "day").toDate();
 }
+
+export function subtractMinuteFromDate(date: ConfigType, minute: number): Date {
+  return dayjs(date).subtract(minute, "m").toDate();
+}
+
