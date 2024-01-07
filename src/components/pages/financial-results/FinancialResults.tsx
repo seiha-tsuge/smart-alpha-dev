@@ -5,7 +5,7 @@ import { api } from '@/utils/api';
 
 export const FinancialResults = () => {
   const { data } = api.finsStatements.getFinsStatements.useQuery({
-    date: '2021-10-15',
+    date: '2023-06-05',
   });
 
   return (
