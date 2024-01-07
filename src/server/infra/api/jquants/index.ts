@@ -2,11 +2,14 @@ import type {
   IJQuantsApi,
   ErrorResponse,
   GetRefreshTokenResponse,
+  GetRefreshTokenData,
   GetIdTokenResponse,
+  GetIdTokenData,
   GetFinancialStatementsRequest,
   GetFinancialStatementsResponse,
 } from "./interfaces";
 import { env } from "@/env";
+import { addDaysToDate } from "@/utils/date";
 
 export class JQuantsApi implements IJQuantsApi {
   public async getRefreshToken(): Promise<GetRefreshTokenResponse> {
@@ -30,8 +33,11 @@ export class JQuantsApi implements IJQuantsApi {
         throw new Error(errorData.message);
       }
 
-      const data = (await response.json()) as GetRefreshTokenResponse;
-      return data;
+      const data = (await response.json()) as GetRefreshTokenData;
+      return {
+        refreshToken: data.refreshToken,
+        refreshTokenExpiresAt: addDaysToDate(new Date(), 7),
+      };
     } catch (error) {
       console.error("Error fetching auth token:", error);
       throw error;
@@ -51,8 +57,11 @@ export class JQuantsApi implements IJQuantsApi {
         throw new Error(errorData.message);
       }
 
-      const data = (await response.json()) as GetIdTokenResponse;
-      return data;
+      const data = (await response.json()) as GetIdTokenData;
+      return {
+        idToken: data.idToken,
+        idTokenExpiresAt: addDaysToDate(new Date(), 1),
+      };
     } catch (error) {
       console.error("Error fetching auth token:", error);
       throw error;

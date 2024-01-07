@@ -16,6 +16,8 @@ import { ZodError } from "zod";
 import { getServerAuthSession } from "@/server/auth";
 import { db } from "@/server/db";
 
+import { JQuantsApi } from "@/server/infra/api/jquants";
+
 /**
  * 1. CONTEXT
  *
@@ -115,10 +117,33 @@ export const publicProcedure = t.procedure;
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
+  // Mark the function as async
   if (!ctx.session || !ctx.session.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
+  const jQuants = await ctx.db.jQuants.findFirst({
+    where: { id: 1 },
+  });
+
+  if (!jQuants) {
+    const jQuantsApi = new JQuantsApi();
+
+    const { refreshToken, refreshTokenExpiresAt } =
+      await jQuantsApi.getRefreshToken();
+    const { idToken, idTokenExpiresAt } = await jQuantsApi.getIdToken(
+      refreshToken
+    );
+    await ctx.db.jQuants.create({
+      data: {
+        refresh_token: refreshToken,
+        refresh_token_expires_at: refreshTokenExpiresAt,
+        id_token: idToken,
+        id_token_expires_at: idTokenExpiresAt,
+      },
+    });
+  }
+
   return next({
     ctx: {
       // infers the `session` as non-nullable

@@ -2,12 +2,22 @@ export interface ErrorResponse {
   message: string;
 }
 
+export interface GetRefreshTokenData {
+  refreshToken: string;
+}
+
 export interface GetRefreshTokenResponse {
   refreshToken: string;
+  refreshTokenExpiresAt: Date;
+}
+
+export interface GetIdTokenData {
+  idToken: string;
 }
 
 export interface GetIdTokenResponse {
   idToken: string;
+  idTokenExpiresAt: Date;
 }
 
 export interface GetFinancialStatementsRequest {
