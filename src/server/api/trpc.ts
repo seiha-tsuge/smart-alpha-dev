@@ -148,10 +148,10 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   }
 
   const { refreshTokenExpiresAt, idTokenExpiresAt } = JQuantsDataEntity.getAllProperties();
-  if (isAfterDate(refreshTokenExpiresAt, subtractMinuteFromDate(refreshTokenExpiresAt, 10))) {
+  if (isAfterDate(subtractMinuteFromDate(new Date(), 10), refreshTokenExpiresAt)) {
     JQuantsDataEntity = await postTokenUseCase.updateRefreshToken(JQuantsDataEntity);
   }
-  if (isAfterDate(idTokenExpiresAt, subtractMinuteFromDate(idTokenExpiresAt, 10))) {
+  if (isAfterDate(subtractMinuteFromDate(new Date(), 10), idTokenExpiresAt)) {
     JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 
