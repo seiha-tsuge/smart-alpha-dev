@@ -141,23 +141,30 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   const jQuantsDataQS = new JQuantsDataQS(ctx.db);
   const getTokenUseCase = new GetTokenUseCase(jQuantsDataQS);
   const jQuantsDataDTO = await getTokenUseCase.getToken();
-  if (!jQuantsDataDTO) {
-    JQuantsDataEntity = await postTokenUseCase.createToken();
-  } else {
+  if (jQuantsDataDTO) {
     JQuantsDataEntity = new JQuantsData({
       ...jQuantsDataDTO.getAllProperties(),
     });
+  } else {
+    // データがない場合は、新規に作成する
+    JQuantsDataEntity = await postTokenUseCase.createToken();
   }
 
   const { refreshTokenExpiresAt, idTokenExpiresAt } =
     JQuantsDataEntity.getAllProperties();
-  const subtractedMinute = subtractMinuteFromDate(new Date(), 10);
-  if (isAfterDate(refreshTokenExpiresAt, subtractedMinute)) {
+  if (
+    isAfterDate(
+      refreshTokenExpiresAt,
+      subtractMinuteFromDate(refreshTokenExpiresAt, 10)
+    )
+  ) {
     JQuantsDataEntity = await postTokenUseCase.updateRefreshToken(
       JQuantsDataEntity
     );
   }
-  if (isAfterDate(idTokenExpiresAt, subtractedMinute)) {
+  if (
+    isAfterDate(idTokenExpiresAt, subtractMinuteFromDate(idTokenExpiresAt, 10))
+  ) {
     JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 
