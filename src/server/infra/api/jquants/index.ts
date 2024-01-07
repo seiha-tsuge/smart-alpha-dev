@@ -8,7 +8,7 @@ import type {
 } from "./interfaces";
 import { env } from "@/env";
 
-export class jQuantsApi implements IJQuantsApi {
+export class JQuantsApi implements IJQuantsApi {
   public async getRefreshToken(): Promise<GetRefreshTokenResponse> {
     const url = "https://api.jquants.com/v1/token/auth_user";
     const body = JSON.stringify({
