@@ -86,7 +86,7 @@ export class JQuantsApi implements IJQuantsApi {
     };
 
     try {
-      const response = await fetch(url, { headers });
+      const response = await fetch(url, { headers, method: 'GET' });
 
       if (!response.ok) {
         const errorData = (await response.json()) as ErrorResponse;
