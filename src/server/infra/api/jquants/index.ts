@@ -1,3 +1,7 @@
+import { TRPCError } from '@trpc/server';
+import { env } from '@/env';
+import { addDaysToDate } from '@/utils/date';
+
 import type {
   IJQuantsApi,
   ErrorResponse,
@@ -8,8 +12,6 @@ import type {
   GetFinancialStatementsRequest,
   GetFinancialStatementsResponse,
 } from './interfaces';
-import { env } from '@/env';
-import { addDaysToDate } from '@/utils/date';
 
 export class JQuantsApi implements IJQuantsApi {
   public async getRefreshToken(): Promise<GetRefreshTokenResponse> {
@@ -30,7 +32,10 @@ export class JQuantsApi implements IJQuantsApi {
 
       if (!response.ok) {
         const errorData = (await response.json()) as ErrorResponse;
-        throw new Error(errorData.message);
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: errorData.message,
+        });
       }
 
       const data = (await response.json()) as GetRefreshTokenData;
@@ -39,7 +44,6 @@ export class JQuantsApi implements IJQuantsApi {
         refreshTokenExpiresAt: addDaysToDate(new Date(), 7),
       };
     } catch (error) {
-      console.error('Error fetching auth token:', error);
       throw error;
     }
   }
@@ -54,7 +58,10 @@ export class JQuantsApi implements IJQuantsApi {
 
       if (!response.ok) {
         const errorData = (await response.json()) as ErrorResponse;
-        throw new Error(errorData.message);
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: errorData.message,
+        });
       }
 
       const data = (await response.json()) as GetIdTokenData;
@@ -63,7 +70,6 @@ export class JQuantsApi implements IJQuantsApi {
         idTokenExpiresAt: addDaysToDate(new Date(), 1),
       };
     } catch (error) {
-      console.error('Error fetching auth token:', error);
       throw error;
     }
   }
@@ -90,13 +96,16 @@ export class JQuantsApi implements IJQuantsApi {
 
       if (!response.ok) {
         const errorData = (await response.json()) as ErrorResponse;
-        throw new Error(errorData.message);
+
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: errorData.message,
+        });
       }
 
       const data = (await response.json()) as GetFinancialStatementsResponse;
       return data;
     } catch (error) {
-      console.error('Error:', error);
       throw error;
     }
   }

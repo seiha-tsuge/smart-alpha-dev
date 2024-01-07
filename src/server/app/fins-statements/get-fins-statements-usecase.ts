@@ -8,10 +8,6 @@ export class GetFinsStatementsUseCase {
   }
 
   public async getFinsStatements(params: { idToken: string; code?: string; date?: string; paginationKey?: string }) {
-    try {
-      return await this.jQuantsApi.getFinancialStatements(params);
-    } catch (error) {
-      throw error;
-    }
+    return await this.jQuantsApi.getFinancialStatements(params);
   }
 }
