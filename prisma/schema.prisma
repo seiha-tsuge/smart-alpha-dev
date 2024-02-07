@@ -20,16 +20,116 @@ model JQuants {
     updatedAt                DateTime @updatedAt
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
+model Statements {
+    id                                                                                         String   @id @default(cuid())
+    disclosed_date                                                                             String
+    disclosed_time                                                                             String
+    local_code                                                                                 String
+    disclosure_number                                                                          String
+    type_of_document                                                                           String
+    type_of_current_period                                                                     String
+    current_period_start_date                                                                  String
+    current_period_end_date                                                                    String
+    current_fiscal_year_start_date                                                             String
+    current_fiscal_year_end_date                                                               String
+    next_fiscal_year_start_date                                                                String
+    next_fiscal_year_end_date                                                                  String
+    net_sales                                                                                  String
+    operating_profit                                                                           String
+    ordinary_profit                                                                            String
+    profit                                                                                     String
+    earnings_per_share                                                                         String
+    diluted_earnings_per_share                                                                 String
+    total_assets                                                                               String
+    equity                                                                                     String
+    equity_to_asset_ratio                                                                      String
+    book_value_per_share                                                                       String
+    cash_flows_from_operating_activities                                                       String
+    cash_flows_from_investing_activities                                                       String
+    cash_flows_from_financing_activities                                                       String
+    cash_and_equivalents                                                                       String
+    result_dividend_per_share_1st_quarter                                                      String
+    result_dividend_per_share_2nd_quarter                                                      String
+    result_dividend_per_share_3rd_quarter                                                      String
+    result_dividend_per_share_fiscal_year_end                                                  String
+    result_dividend_per_share_annual                                                           String
+    distributions_per_unit                                                                     String
+    result_total_dividend_paid_annual                                                          String
+    result_payout_ratio_annual                                                                 String
+    forecast_dividend_per_share_1st_quarter                                                    String
+    forecast_dividend_per_share_2nd_quarter                                                    String
+    forecast_dividend_per_share_3rd_quarter                                                    String
+    forecast_dividend_per_share_fiscal_year_end                                                String
+    forecast_dividend_per_share_annual                                                         String
+    forecast_distributions_per_unit                                                            String
+    forecast_total_dividend_paid_annual                                                        String
+    forecast_payout_ratio_annual                                                               String
+    next_year_forecast_dividend_per_share_1st_quarter                                          String
+    next_year_forecast_dividend_per_share_2nd_quarter                                          String
+    next_year_forecast_dividend_per_share_3rd_quarter                                          String
+    next_year_forecast_dividend_per_share_fiscal_year_end                                      String
+    next_year_forecast_dividend_per_share_annual                                               String
+    next_year_forecast_distributions_per_unit                                                  String
+    next_year_forecast_payout_ratio_annual                                                     String
+    forecast_net_sales_2nd_quarter                                                             String
+    forecast_operating_profit_2nd_quarter                                                      String
+    forecast_ordinary_profit_2nd_quarter                                                       String
+    forecast_profit_2nd_quarter                                                                String
+    forecast_earnings_per_share_2nd_quarter                                                    String
+    next_year_forecast_net_sales_2nd_quarter                                                   String
+    next_year_forecast_operating_profit_2nd_quarter                                            String
+    next_year_forecast_ordinary_profit_2nd_quarter                                             String
+    next_year_forecast_profit_2nd_quarter                                                      String
+    next_year_forecast_earnings_per_share_2nd_quarter                                          String
+    forecast_net_sales                                                                         String
+    forecast_operating_profit                                                                  String
+    forecast_ordinary_profit                                                                   String
+    forecast_profit                                                                            String
+    forecast_earnings_per_share                                                                String
+    next_year_forecast_net_sales                                                               String
+    next_year_forecast_operating_profit                                                        String
+    next_year_forecast_ordinary_profit                                                         String
+    next_year_forecast_profit                                                                  String
+    next_year_forecast_earnings_per_share                                                      String
+    material_changes_in_subsidiaries                                                           String
+    changes_based_on_revisions_of_accounting_standard                                          String
+    changes_other_than_ones_based_on_revisions_of_accounting_standard                          String
+    changes_in_accounting_estimates                                                            String
+    retrospective_restatement                                                                  String
+    number_of_issued_and_outstanding_shares_at_the_end_of_fiscal_year_including_treasury_stock String
+    number_of_treasury_stock_at_the_end_of_fiscal_year                                         String
+    average_number_of_shares                                                                   String
+    non_consolidated_net_sales                                                                 String
+    non_consolidated_operating_profit                                                          String
+    non_consolidated_ordinary_profit                                                           String
+    non_consolidated_profit                                                                    String
+    non_consolidated_earnings_per_share                                                        String
+    non_consolidated_total_assets                                                              String
+    non_consolidated_equity                                                                    String
+    non_consolidated_equity_to_asset_ratio                                                     String
+    non_consolidated_book_value_per_share                                                      String
+    forecast_non_consolidated_net_sales_2nd_quarter                                            String
+    forecast_non_consolidated_operating_profit_2nd_quarter                                     String
+    forecast_non_consolidated_ordinary_profit_2nd_quarter                                      String
+    forecast_non_consolidated_profit_2nd_quarter                                               String
+    forecast_non_consolidated_earnings_per_share_2nd_quarter                                   String
+    next_year_forecast_non_consolidated_net_sales_2nd_quarter                                  String
+    next_year_forecast_non_consolidated_operating_profit_2nd_quarter                           String
+    next_year_forecast_non_consolidated_ordinary_profit_2nd_quarter                            String
+    next_year_forecast_non_consolidated_profit_2nd_quarter                                     String
+    next_year_forecast_non_consolidated_earnings_per_share_2nd_quarter                         String
+    forecast_non_consolidated_net_sales                                                        String
+    forecast_non_consolidated_operating_profit                                                 String
+    forecast_non_consolidated_ordinary_profit                                                  String
+    forecast_non_consolidated_profit                                                           String
+    forecast_non_consolidated_earnings_per_share                                               String
+    next_year_forecast_non_consolidated_net_sales                                              String
+    next_year_forecast_non_consolidated_operating_profit                                       String
+    next_year_forecast_non_consolidated_ordinary_profit                                        String
+    next_year_forecast_non_consolidated_profit                                                 String
+    next_year_forecast_non_consolidated_earnings_per_share                                     String
+    createdAt                                                                                  DateTime @default(now())
+    updatedAt                                                                                  DateTime @updatedAt
 }
 
 // Necessary for Next auth
@@ -68,7 +168,6 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
 }
 
 model VerificationToken {
