@@ -21,115 +21,115 @@ model JQuants {
 }
 
 model Statements {
-    id                                                                                         String   @id @default(cuid())
-    disclosed_date                                                                             String
-    disclosed_time                                                                             String
-    local_code                                                                                 String
-    disclosure_number                                                                          String
-    type_of_document                                                                           String
-    type_of_current_period                                                                     String
-    current_period_start_date                                                                  String
-    current_period_end_date                                                                    String
-    current_fiscal_year_start_date                                                             String
-    current_fiscal_year_end_date                                                               String
-    next_fiscal_year_start_date                                                                String
-    next_fiscal_year_end_date                                                                  String
-    net_sales                                                                                  String
-    operating_profit                                                                           String
-    ordinary_profit                                                                            String
-    profit                                                                                     String
-    earnings_per_share                                                                         String
-    diluted_earnings_per_share                                                                 String
-    total_assets                                                                               String
-    equity                                                                                     String
-    equity_to_asset_ratio                                                                      String
-    book_value_per_share                                                                       String
-    cash_flows_from_operating_activities                                                       String
-    cash_flows_from_investing_activities                                                       String
-    cash_flows_from_financing_activities                                                       String
-    cash_and_equivalents                                                                       String
-    result_dividend_per_share_1st_quarter                                                      String
-    result_dividend_per_share_2nd_quarter                                                      String
-    result_dividend_per_share_3rd_quarter                                                      String
-    result_dividend_per_share_fiscal_year_end                                                  String
-    result_dividend_per_share_annual                                                           String
-    distributions_per_unit                                                                     String
-    result_total_dividend_paid_annual                                                          String
-    result_payout_ratio_annual                                                                 String
-    forecast_dividend_per_share_1st_quarter                                                    String
-    forecast_dividend_per_share_2nd_quarter                                                    String
-    forecast_dividend_per_share_3rd_quarter                                                    String
-    forecast_dividend_per_share_fiscal_year_end                                                String
-    forecast_dividend_per_share_annual                                                         String
-    forecast_distributions_per_unit                                                            String
-    forecast_total_dividend_paid_annual                                                        String
-    forecast_payout_ratio_annual                                                               String
-    next_year_forecast_dividend_per_share_1st_quarter                                          String
-    next_year_forecast_dividend_per_share_2nd_quarter                                          String
-    next_year_forecast_dividend_per_share_3rd_quarter                                          String
-    next_year_forecast_dividend_per_share_fiscal_year_end                                      String
-    next_year_forecast_dividend_per_share_annual                                               String
-    next_year_forecast_distributions_per_unit                                                  String
-    next_year_forecast_payout_ratio_annual                                                     String
-    forecast_net_sales_2nd_quarter                                                             String
-    forecast_operating_profit_2nd_quarter                                                      String
-    forecast_ordinary_profit_2nd_quarter                                                       String
-    forecast_profit_2nd_quarter                                                                String
-    forecast_earnings_per_share_2nd_quarter                                                    String
-    next_year_forecast_net_sales_2nd_quarter                                                   String
-    next_year_forecast_operating_profit_2nd_quarter                                            String
-    next_year_forecast_ordinary_profit_2nd_quarter                                             String
-    next_year_forecast_profit_2nd_quarter                                                      String
-    next_year_forecast_earnings_per_share_2nd_quarter                                          String
-    forecast_net_sales                                                                         String
-    forecast_operating_profit                                                                  String
-    forecast_ordinary_profit                                                                   String
-    forecast_profit                                                                            String
-    forecast_earnings_per_share                                                                String
-    next_year_forecast_net_sales                                                               String
-    next_year_forecast_operating_profit                                                        String
-    next_year_forecast_ordinary_profit                                                         String
-    next_year_forecast_profit                                                                  String
-    next_year_forecast_earnings_per_share                                                      String
-    material_changes_in_subsidiaries                                                           String
-    changes_based_on_revisions_of_accounting_standard                                          String
-    changes_other_than_ones_based_on_revisions_of_accounting_standard                          String
-    changes_in_accounting_estimates                                                            String
-    retrospective_restatement                                                                  String
-    number_of_issued_and_outstanding_shares_at_the_end_of_fiscal_year_including_treasury_stock String
-    number_of_treasury_stock_at_the_end_of_fiscal_year                                         String
-    average_number_of_shares                                                                   String
-    non_consolidated_net_sales                                                                 String
-    non_consolidated_operating_profit                                                          String
-    non_consolidated_ordinary_profit                                                           String
-    non_consolidated_profit                                                                    String
-    non_consolidated_earnings_per_share                                                        String
-    non_consolidated_total_assets                                                              String
-    non_consolidated_equity                                                                    String
-    non_consolidated_equity_to_asset_ratio                                                     String
-    non_consolidated_book_value_per_share                                                      String
-    forecast_non_consolidated_net_sales_2nd_quarter                                            String
-    forecast_non_consolidated_operating_profit_2nd_quarter                                     String
-    forecast_non_consolidated_ordinary_profit_2nd_quarter                                      String
-    forecast_non_consolidated_profit_2nd_quarter                                               String
-    forecast_non_consolidated_earnings_per_share_2nd_quarter                                   String
-    next_year_forecast_non_consolidated_net_sales_2nd_quarter                                  String
-    next_year_forecast_non_consolidated_operating_profit_2nd_quarter                           String
-    next_year_forecast_non_consolidated_ordinary_profit_2nd_quarter                            String
-    next_year_forecast_non_consolidated_profit_2nd_quarter                                     String
-    next_year_forecast_non_consolidated_earnings_per_share_2nd_quarter                         String
-    forecast_non_consolidated_net_sales                                                        String
-    forecast_non_consolidated_operating_profit                                                 String
-    forecast_non_consolidated_ordinary_profit                                                  String
-    forecast_non_consolidated_profit                                                           String
-    forecast_non_consolidated_earnings_per_share                                               String
-    next_year_forecast_non_consolidated_net_sales                                              String
-    next_year_forecast_non_consolidated_operating_profit                                       String
-    next_year_forecast_non_consolidated_ordinary_profit                                        String
-    next_year_forecast_non_consolidated_profit                                                 String
-    next_year_forecast_non_consolidated_earnings_per_share                                     String
-    createdAt                                                                                  DateTime @default(now())
-    updatedAt                                                                                  DateTime @updatedAt
+    id                                                           String   @id @default(cuid())
+    disclosed_date                                               String   @db.Char(10)
+    disclosed_time                                               String   @db.Char(8)
+    local_code                                                   String   @db.Char(5)
+    disclosure_number                                            String   @db.VarChar(15)
+    type_of_document                                             String   @db.VarChar(60)
+    type_of_current_period                                       String   @db.Char(2)
+    current_period_start_date                                    String   @db.Char(10)
+    current_period_end_date                                      String   @db.Char(10)
+    current_fiscal_year_start_date                               String   @db.Char(10)
+    current_fiscal_year_end_date                                 String   @db.Char(10)
+    next_fiscal_year_start_date                                  String   @db.Char(10)
+    next_fiscal_year_end_date                                    String   @db.Char(10)
+    net_sales                                                    BigInt   @db.BigInt
+    operating_profit                                             BigInt   @db.BigInt
+    ordinary_profit                                              BigInt   @db.BigInt
+    profit                                                       BigInt   @db.BigInt
+    earnings_per_share                                           Decimal  @db.Decimal(12, 5)
+    diluted_earnings_per_share                                   Decimal  @db.Decimal(12, 5)
+    total_assets                                                 BigInt   @db.BigInt
+    equity                                                       BigInt   @db.BigInt
+    equity_to_asset_ratio                                        Decimal  @db.Decimal(5, 3)
+    book_value_per_share                                         Decimal  @db.Decimal(12, 5)
+    cash_flows_from_operating_activities                         BigInt   @db.BigInt
+    cash_flows_from_investing_activities                         BigInt   @db.BigInt
+    cash_flows_from_financing_activities                         BigInt   @db.BigInt
+    cash_and_equivalents                                         BigInt   @db.BigInt
+    result_dividend_per_share_1st_q                              Int      @db.MediumInt
+    result_dividend_per_share_2nd_q                              Int      @db.MediumInt
+    result_dividend_per_share_3rd_q                              Int      @db.MediumInt
+    result_dividend_per_share_fiscal_year_end                    Int      @db.MediumInt
+    result_dividend_per_share_annual                             Int      @db.MediumInt
+    distributions_per_unit                                       Int      @db.MediumInt
+    result_total_dividend_paid_annual                            BigInt   @db.BigInt
+    result_payout_ratio_annual                                   Decimal  @db.Decimal(12, 5)
+    forecast_dividend_per_share_1st_q                            Int      @db.MediumInt
+    forecast_dividend_per_share_2nd_q                            Int      @db.MediumInt
+    forecast_dividend_per_share_3rd_q                            Int      @db.MediumInt
+    forecast_dividend_per_share_fiscal_year_end                  Int      @db.MediumInt
+    forecast_dividend_per_share_annual                           Int      @db.MediumInt
+    forecast_distributions_per_unit                              Int      @db.MediumInt
+    forecast_total_dividend_paid_annual                          BigInt   @db.BigInt
+    forecast_payout_ratio_annual                                 Decimal  @db.Decimal(12, 5)
+    next_year_forecast_dividend_per_share_1st_q                  Int      @db.MediumInt
+    next_year_forecast_dividend_per_share_2nd_q                  Int      @db.MediumInt
+    next_year_forecast_dividend_per_share_3rd_q                  Int      @db.MediumInt
+    next_year_forecast_dividend_per_share_fiscal_year_end        Int      @db.MediumInt
+    next_year_forecast_dividend_per_share_annual                 Int      @db.MediumInt
+    next_year_forecast_distributions_per_unit                    Int      @db.MediumInt
+    next_year_forecast_payout_ratio_annual                       Decimal  @db.Decimal(12, 5)
+    forecast_net_sales_2nd_q                                     BigInt   @db.BigInt
+    forecast_operating_profit_2nd_q                              BigInt   @db.BigInt
+    forecast_ordinary_profit_2nd_q                               BigInt   @db.BigInt
+    forecast_profit_2nd_q                                        BigInt   @db.BigInt
+    forecast_earnings_per_share_2nd_q                            Decimal  @db.Decimal(12, 5)
+    next_year_forecast_net_sales_2nd_q                           BigInt   @db.BigInt
+    next_year_forecast_operating_profit_2nd_q                    BigInt   @db.BigInt
+    next_year_forecast_ordinary_profit_2nd_q                     BigInt   @db.BigInt
+    next_year_forecast_profit_2nd_q                              BigInt   @db.BigInt
+    next_year_forecast_earnings_per_share_2nd_q                  Decimal  @db.Decimal(12, 5)
+    forecast_net_sales                                           BigInt   @db.BigInt
+    forecast_operating_profit                                    BigInt   @db.BigInt
+    forecast_ordinary_profit                                     BigInt   @db.BigInt
+    forecast_profit                                              BigInt   @db.BigInt
+    forecast_earnings_per_share                                  Decimal  @db.Decimal(12, 5)
+    next_year_forecast_net_sales                                 BigInt   @db.BigInt
+    next_year_forecast_operating_profit                          BigInt   @db.BigInt
+    next_year_forecast_ordinary_profit                           BigInt   @db.BigInt
+    next_year_forecast_profit                                    BigInt   @db.BigInt
+    next_year_forecast_earnings_per_share                        Decimal  @db.Decimal(12, 5)
+    material_changes_in_subsidiaries                             Boolean  @db.TinyInt
+    changes_based_on_revisions_of_accounting_standard            Boolean  @db.TinyInt
+    non_standard_revisions                                       Boolean  @db.TinyInt
+    changes_in_accounting_estimates                              Boolean  @db.TinyInt
+    retrospective_restatement                                    Boolean  @db.TinyInt
+    number_of_shares_issued_at_the_end_of_the_term               BigInt   @db.BigInt
+    number_of_treasury_stock_at_the_end_of_fiscal_year           BigInt   @db.BigInt
+    average_number_of_shares                                     BigInt   @db.BigInt
+    non_consolidated_net_sales                                   BigInt   @db.BigInt
+    non_consolidated_operating_profit                            BigInt   @db.BigInt
+    non_consolidated_ordinary_profit                             BigInt   @db.BigInt
+    non_consolidated_profit                                      BigInt   @db.BigInt
+    non_consolidated_earnings_per_share                          Decimal  @db.Decimal(12, 5)
+    non_consolidated_total_assets                                BigInt   @db.BigInt
+    non_consolidated_equity                                      BigInt   @db.BigInt
+    non_consolidated_equity_to_asset_ratio                       Decimal  @db.Decimal(5, 3)
+    non_consolidated_book_value_per_share                        Decimal  @db.Decimal(12, 5)
+    forecast_non_consolidated_net_sales_2nd_q                    BigInt   @db.BigInt
+    forecast_non_consolidated_operating_profit_2nd_q             BigInt   @db.BigInt
+    forecast_non_consolidated_ordinary_profit_2nd_q              BigInt   @db.BigInt
+    forecast_non_consolidated_profit_2nd_q                       BigInt   @db.BigInt
+    forecast_non_consolidated_earnings_per_share_2nd_q           Decimal  @db.Decimal(12, 5)
+    next_year_forecast_non_consolidated_net_sales_2nd_q          BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_operating_profit_2nd_q   BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_ordinary_profit_2nd_q    BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_profit_2nd_q             BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_earnings_per_share_2nd_q Decimal  @db.Decimal(12, 5)
+    forecast_non_consolidated_net_sales                          BigInt   @db.BigInt
+    forecast_non_consolidated_operating_profit                   BigInt   @db.BigInt
+    forecast_non_consolidated_ordinary_profit                    BigInt   @db.BigInt
+    forecast_non_consolidated_profit                             BigInt   @db.BigInt
+    forecast_non_consolidated_earnings_per_share                 Decimal  @db.Decimal(12, 5)
+    next_year_forecast_non_consolidated_net_sales                BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_operating_profit         BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_ordinary_profit          BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_profit                   BigInt   @db.BigInt
+    next_year_forecast_non_consolidated_earnings_per_share       Decimal  @db.Decimal(12, 5)
+    createdAt                                                    DateTime @default(now())
+    updatedAt                                                    DateTime @updatedAt
 }
 
 // Necessary for Next auth
