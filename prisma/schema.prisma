@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -65,28 +64,28 @@ model Statements {
     cash_flows_from_investing_activities                         BigInt?   @db.BigInt
     cash_flows_from_financing_activities                         BigInt?   @db.BigInt
     cash_and_equivalents                                         BigInt?   @db.BigInt
-    result_dividend_per_share_1st_q                              Int?      @db.MediumInt
-    result_dividend_per_share_2nd_q                              Int?      @db.MediumInt
-    result_dividend_per_share_3rd_q                              Int?      @db.MediumInt
-    result_dividend_per_share_fiscal_year_end                    Int?      @db.MediumInt
-    result_dividend_per_share_annual                             Int?      @db.MediumInt
-    distributions_per_unit                                       Int?      @db.MediumInt
+    result_dividend_per_share_1st_q                              Int?      @db.Integer
+    result_dividend_per_share_2nd_q                              Int?      @db.Integer
+    result_dividend_per_share_3rd_q                              Int?      @db.Integer
+    result_dividend_per_share_fiscal_year_end                    Int?      @db.Integer
+    result_dividend_per_share_annual                             Int?      @db.Integer
+    distributions_per_unit                                       Int?      @db.Integer
     result_total_dividend_paid_annual                            BigInt?   @db.BigInt
     result_payout_ratio_annual                                   Decimal?  @db.Decimal(12, 5)
-    forecast_dividend_per_share_1st_q                            Int?      @db.MediumInt
-    forecast_dividend_per_share_2nd_q                            Int?      @db.MediumInt
-    forecast_dividend_per_share_3rd_q                            Int?      @db.MediumInt
-    forecast_dividend_per_share_fiscal_year_end                  Int?      @db.MediumInt
-    forecast_dividend_per_share_annual                           Int?      @db.MediumInt
-    forecast_distributions_per_unit                              Int?      @db.MediumInt
+    forecast_dividend_per_share_1st_q                            Int?      @db.Integer
+    forecast_dividend_per_share_2nd_q                            Int?      @db.Integer
+    forecast_dividend_per_share_3rd_q                            Int?      @db.Integer
+    forecast_dividend_per_share_fiscal_year_end                  Int?      @db.Integer
+    forecast_dividend_per_share_annual                           Int?      @db.Integer
+    forecast_distributions_per_unit                              Int?      @db.Integer
     forecast_total_dividend_paid_annual                          BigInt?   @db.BigInt
     forecast_payout_ratio_annual                                 Decimal?  @db.Decimal(12, 5)
-    next_year_forecast_dividend_per_share_1st_q                  Int?      @db.MediumInt
-    next_year_forecast_dividend_per_share_2nd_q                  Int?      @db.MediumInt
-    next_year_forecast_dividend_per_share_3rd_q                  Int?      @db.MediumInt
-    next_year_forecast_dividend_per_share_fiscal_year_end        Int?      @db.MediumInt
-    next_year_forecast_dividend_per_share_annual                 Int?      @db.MediumInt
-    next_year_forecast_distributions_per_unit                    Int?      @db.MediumInt
+    next_year_forecast_dividend_per_share_1st_q                  Int?      @db.Integer
+    next_year_forecast_dividend_per_share_2nd_q                  Int?      @db.Integer
+    next_year_forecast_dividend_per_share_3rd_q                  Int?      @db.Integer
+    next_year_forecast_dividend_per_share_fiscal_year_end        Int?      @db.Integer
+    next_year_forecast_dividend_per_share_annual                 Int?      @db.Integer
+    next_year_forecast_distributions_per_unit                    Int?      @db.Integer
     next_year_forecast_payout_ratio_annual                       Decimal?  @db.Decimal(12, 5)
     forecast_net_sales_2nd_q                                     BigInt?   @db.BigInt
     forecast_operating_profit_2nd_q                              BigInt?   @db.BigInt
@@ -108,11 +107,11 @@ model Statements {
     next_year_forecast_ordinary_profit                           BigInt?   @db.BigInt
     next_year_forecast_profit                                    BigInt?   @db.BigInt
     next_year_forecast_earnings_per_share                        Decimal?  @db.Decimal(12, 5)
-    material_changes_in_subsidiaries                             Boolean?  @db.TinyInt
-    changes_based_on_revisions_of_accounting_standard            Boolean?  @db.TinyInt
-    non_standard_revisions                                       Boolean?  @db.TinyInt
-    changes_in_accounting_estimates                              Boolean?  @db.TinyInt
-    retrospective_restatement                                    Boolean?  @db.TinyInt
+    material_changes_in_subsidiaries                             Boolean?  @db.Boolean
+    changes_based_on_revisions_of_accounting_standard            Boolean?  @db.Boolean
+    non_standard_revisions                                       Boolean?  @db.Boolean
+    changes_in_accounting_estimates                              Boolean?  @db.Boolean
+    retrospective_restatement                                    Boolean?  @db.Boolean
     number_of_shares_issued_at_the_end_of_the_term               BigInt?   @db.BigInt
     number_of_treasury_stock_at_the_end_of_fiscal_year           BigInt?   @db.BigInt
     average_number_of_shares                                     BigInt?   @db.BigInt
