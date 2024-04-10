@@ -147,7 +147,7 @@ export interface GetListedInfoRequest {
   date?: string;
 }
 
-export interface GetListedInfoResponse {
+export interface ListedInfo {
   Date: string;
   Code: string;
   CompanyName: string;
@@ -161,6 +161,10 @@ export interface GetListedInfoResponse {
   MarketCodeName: string;
   MarginCode: string;
   MarginCodeName: string;
+}
+
+export interface GetListedInfoResponse {
+  info: ListedInfo[];
 }
 
 export interface IJQuantsApi {

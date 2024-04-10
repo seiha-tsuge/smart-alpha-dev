@@ -37,30 +37,27 @@ export default async function handler(request: NextApiRequest, response: NextApi
     JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 
-  const today = new Date();
-  const sixMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 6, today.getDate());
-  const formattedDate = sixMonthsAgo.toISOString().slice(0, 10);
-  const financialStatements = await jQuantsApi.getFinancialStatements({
+  const listedInfo = await jQuantsApi.getListedInfo({
     idToken: JQuantsDataEntity.getAllProperties().idToken,
-    date: formattedDate,
   });
 
-  const statements: Prisma.StatementsCreateManyInput[] = financialStatements.statements.map((statement) => {
+  const listedInfoCreateManyInput: Prisma.ListedInfoCreateManyInput[] = listedInfo.info.map((info) => {
     return {
-      disclosed_date: statement.DisclosedDate,
-      disclosed_time: statement.DisclosedTime,
-      local_code: statement.LocalCode,
-      disclosure_number: statement.DisclosureNumber,
-      type_of_document: statement.TypeOfDocument,
-      type_of_current_period: statement.TypeOfCurrentPeriod,
-      current_period_start_date: statement.CurrentPeriodStartDate,
-      current_period_end_date: statement.CurrentPeriodEndDate,
-      current_fiscal_year_start_date: statement.CurrentFiscalYearStartDate,
-      current_fiscal_year_end_date: statement.CurrentFiscalYearEndDate,
+      Date: info.Date,
+      Code: info.Code,
+      CompanyName: info.CompanyName,
+      CompanyNameEnglish: info.CompanyNameEnglish,
+      Sector17Code: info.Sector17Code,
+      Sector17CodeName: info.Sector17CodeName,
+      Sector33Code: info.Sector33Code,
+      Sector33CodeName: info.Sector33CodeName,
+      ScaleCategory: info.ScaleCategory,
+      MarketCode: info.MarketCode,
+      MarketCodeName: info.MarketCodeName,
     };
   });
 
-  await db.statements.createMany({ data: statements });
+  await db.listedInfo.createMany({ data: listedInfoCreateManyInput });
 
-  return response.status(200).json(financialStatements);
+  return response.status(200).json(listedInfo);
 }
