@@ -60,319 +60,297 @@ export default async function handler(request: NextApiRequest, response: NextApi
       current_fiscal_year_end_date: statement.CurrentFiscalYearEndDate,
       next_fiscal_year_start_date: statement.NextFiscalYearStartDate,
       next_fiscal_year_end_date: statement.NextFiscalYearEndDate,
-      net_sales: statement.NetSales !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      operating_profit:
-        statement.OperatingProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      ordinary_profit:
-        statement.OrdinaryProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      profit: statement.Profit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      earnings_per_share:
-        statement.EarningsPerShare !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+      net_sales: statement.NetSales !== undefined ? Number(statement.NetSales) : null,
+      operating_profit: statement.OperatingProfit !== undefined ? Number(statement.OperatingProfit) : null,
+      ordinary_profit: statement.OrdinaryProfit !== undefined ? Number(statement.OrdinaryProfit) : null,
+      profit: statement.Profit !== undefined ? Number(statement.Profit) : null,
+      earnings_per_share: statement.EarningsPerShare !== undefined ? Number(statement.EarningsPerShare) : null,
       diluted_earnings_per_share:
-        statement.DilutedEarningsPerShare !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      total_assets: statement.TotalAssets !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      equity: statement.Equity !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      equity_to_asset_ratio:
-        statement.EquityToAssetRatio !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      book_value_per_share:
-        statement.BookValuePerShare !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.DilutedEarningsPerShare !== undefined ? Number(statement.DilutedEarningsPerShare) : null,
+      total_assets: statement.TotalAssets !== undefined ? Number(statement.TotalAssets) : null,
+      equity: statement.Equity !== undefined ? Number(statement.Equity) : null,
+      equity_to_asset_ratio: statement.EquityToAssetRatio !== undefined ? Number(statement.EquityToAssetRatio) : null,
+      book_value_per_share: statement.BookValuePerShare !== undefined ? Number(statement.BookValuePerShare) : null,
       cash_flows_from_operating_activities:
         statement.CashFlowsFromOperatingActivities !== undefined
           ? Number(statement.CashFlowsFromOperatingActivities)
           : null,
       cash_flows_from_investing_activities:
         statement.CashFlowsFromInvestingActivities !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.CashFlowsFromInvestingActivities)
           : null,
       cash_flows_from_financing_activities:
         statement.CashFlowsFromFinancingActivities !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.CashFlowsFromFinancingActivities)
           : null,
-      cash_and_equivalents:
-        statement.CashAndEquivalents !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+      cash_and_equivalents: statement.CashAndEquivalents !== undefined ? Number(statement.CashAndEquivalents) : null,
       result_dividend_per_share_1st_q:
         statement.ResultDividendPerShare1stQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ResultDividendPerShare1stQuarter)
           : null,
       result_dividend_per_share_2nd_q:
         statement.ResultDividendPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ResultDividendPerShare2ndQuarter)
           : null,
       result_dividend_per_share_3rd_q:
         statement.ResultDividendPerShare3rdQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ResultDividendPerShare3rdQuarter)
           : null,
       result_dividend_per_share_fiscal_year_end:
         statement.ResultDividendPerShareFiscalYearEnd !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ResultDividendPerShareFiscalYearEnd)
           : null,
       result_dividend_per_share_annual:
-        statement.ResultDividendPerShareAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.ResultDividendPerShareAnnual !== undefined ? Number(statement.ResultDividendPerShareAnnual) : null,
       distributions_per_unit:
-        statement.DistributionsPerUnit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.DistributionsPerUnit !== undefined ? Number(statement.DistributionsPerUnit) : null,
       result_total_dividend_paid_annual:
-        statement.ResultTotalDividendPaidAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.ResultTotalDividendPaidAnnual !== undefined ? Number(statement.ResultTotalDividendPaidAnnual) : null,
       result_payout_ratio_annual:
-        statement.ResultPayoutRatioAnnual !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ResultPayoutRatioAnnual !== undefined ? Number(statement.ResultPayoutRatioAnnual) : null,
       forecast_dividend_per_share_1st_q:
         statement.ForecastDividendPerShare1stQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastDividendPerShare1stQuarter)
           : null,
       forecast_dividend_per_share_2nd_q:
         statement.ForecastDividendPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastDividendPerShare2ndQuarter)
           : null,
       forecast_dividend_per_share_3rd_q:
         statement.ForecastDividendPerShare3rdQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastDividendPerShare3rdQuarter)
           : null,
       forecast_dividend_per_share_fiscal_year_end:
         statement.ForecastDividendPerShareFiscalYearEnd !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastDividendPerShareFiscalYearEnd)
           : null,
       forecast_dividend_per_share_annual:
         statement.ForecastDividendPerShareAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastDividendPerShareAnnual)
           : null,
       forecast_distributions_per_unit:
-        statement.ForecastDistributionsPerUnit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.ForecastDistributionsPerUnit !== undefined ? Number(statement.ForecastDistributionsPerUnit) : null,
       forecast_total_dividend_paid_annual:
         statement.ForecastTotalDividendPaidAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastTotalDividendPaidAnnual)
           : null,
       forecast_payout_ratio_annual:
-        statement.ForecastPayoutRatioAnnual !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastPayoutRatioAnnual !== undefined ? Number(statement.ForecastPayoutRatioAnnual) : null,
       next_year_forecast_dividend_per_share_1st_q:
         statement.NextYearForecastDividendPerShare1stQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDividendPerShare1stQuarter)
           : null,
       next_year_forecast_dividend_per_share_2nd_q:
         statement.NextYearForecastDividendPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDividendPerShare2ndQuarter)
           : null,
       next_year_forecast_dividend_per_share_3rd_q:
         statement.NextYearForecastDividendPerShare3rdQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDividendPerShare3rdQuarter)
           : null,
       next_year_forecast_dividend_per_share_fiscal_year_end:
         statement.NextYearForecastDividendPerShareFiscalYearEnd !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDividendPerShareFiscalYearEnd)
           : null,
       next_year_forecast_dividend_per_share_annual:
         statement.NextYearForecastDividendPerShareAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDividendPerShareAnnual)
           : null,
       next_year_forecast_distributions_per_unit:
         statement.NextYearForecastDistributionsPerUnit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastDistributionsPerUnit)
           : null,
       next_year_forecast_payout_ratio_annual:
         statement.NextYearForecastPayoutRatioAnnual !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastPayoutRatioAnnual)
           : null,
       forecast_net_sales_2nd_q:
-        statement.ForecastNetSales2ndQuarter !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastNetSales2ndQuarter !== undefined ? Number(statement.ForecastNetSales2ndQuarter) : null,
       forecast_operating_profit_2nd_q:
         statement.ForecastOperatingProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastOperatingProfit2ndQuarter)
           : null,
       forecast_ordinary_profit_2nd_q:
         statement.ForecastOrdinaryProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastOrdinaryProfit2ndQuarter)
           : null,
       forecast_profit_2nd_q:
-        statement.ForecastProfit2ndQuarter !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastProfit2ndQuarter !== undefined ? Number(statement.ForecastProfit2ndQuarter) : null,
       forecast_earnings_per_share_2nd_q:
         statement.ForecastEarningsPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastEarningsPerShare2ndQuarter)
           : null,
       next_year_forecast_net_sales_2nd_q:
         statement.NextYearForecastNetSales2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNetSales2ndQuarter)
           : null,
       next_year_forecast_operating_profit_2nd_q:
         statement.NextYearForecastOperatingProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastOperatingProfit2ndQuarter)
           : null,
       next_year_forecast_ordinary_profit_2nd_q:
         statement.NextYearForecastOrdinaryProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastOrdinaryProfit2ndQuarter)
           : null,
       next_year_forecast_profit_2nd_q:
         statement.NextYearForecastProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastProfit2ndQuarter)
           : null,
       next_year_forecast_earnings_per_share_2nd_q:
         statement.NextYearForecastEarningsPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastEarningsPerShare2ndQuarter)
           : null,
-      forecast_net_sales:
-        statement.ForecastNetSales !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+      forecast_net_sales: statement.ForecastNetSales !== undefined ? Number(statement.ForecastNetSales) : null,
       forecast_operating_profit:
-        statement.ForecastOperatingProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastOperatingProfit !== undefined ? Number(statement.ForecastOperatingProfit) : null,
       forecast_ordinary_profit:
-        statement.ForecastOrdinaryProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
-      forecast_profit:
-        statement.ForecastProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastOrdinaryProfit !== undefined ? Number(statement.ForecastOrdinaryProfit) : null,
+      forecast_profit: statement.ForecastProfit !== undefined ? Number(statement.ForecastProfit) : null,
       forecast_earnings_per_share:
-        statement.ForecastEarningsPerShare !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.ForecastEarningsPerShare !== undefined ? Number(statement.ForecastEarningsPerShare) : null,
       next_year_forecast_net_sales:
-        statement.NextYearForecastNetSales !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NextYearForecastNetSales !== undefined ? Number(statement.NextYearForecastNetSales) : null,
       next_year_forecast_operating_profit:
         statement.NextYearForecastOperatingProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastOperatingProfit)
           : null,
       next_year_forecast_ordinary_profit:
         statement.NextYearForecastOrdinaryProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastOrdinaryProfit)
           : null,
       next_year_forecast_profit:
-        statement.NextYearForecastProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NextYearForecastProfit !== undefined ? Number(statement.NextYearForecastProfit) : null,
       next_year_forecast_earnings_per_share:
         statement.NextYearForecastEarningsPerShare !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastEarningsPerShare)
           : null,
       material_changes_in_subsidiaries:
-        statement.MaterialChangesInSubsidiaries !== undefined
-          ? Boolean(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.MaterialChangesInSubsidiaries !== undefined ? Boolean(statement.MaterialChangesInSubsidiaries) : null,
       changes_based_on_revisions_of_accounting_standard:
         statement.ChangesBasedOnRevisionsOfAccountingStandard !== undefined
-          ? Boolean(statement.CashFlowsFromOperatingActivities)
+          ? Boolean(statement.ChangesBasedOnRevisionsOfAccountingStandard)
           : null,
       non_standard_revisions:
         statement.ChangesOtherThanOnesBasedOnRevisionsOfAccountingStandard !== undefined
-          ? Boolean(statement.CashFlowsFromOperatingActivities)
+          ? Boolean(statement.ChangesOtherThanOnesBasedOnRevisionsOfAccountingStandard)
           : null,
       changes_in_accounting_estimates:
-        statement.ChangesInAccountingEstimates !== undefined
-          ? Boolean(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.ChangesInAccountingEstimates !== undefined ? Boolean(statement.ChangesInAccountingEstimates) : null,
       retrospective_restatement:
-        statement.RetrospectiveRestatement !== undefined ? Boolean(statement.CashFlowsFromOperatingActivities) : null,
+        statement.RetrospectiveRestatement !== undefined ? Boolean(statement.RetrospectiveRestatement) : null,
       number_of_shares_issued_at_the_end_of_the_term:
         statement.NumberOfIssuedAndOutstandingSharesAtTheEndOfFiscalYearIncludingTreasuryStock !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NumberOfIssuedAndOutstandingSharesAtTheEndOfFiscalYearIncludingTreasuryStock)
           : null,
       number_of_treasury_stock_at_the_end_of_fiscal_year:
         statement.NumberOfTreasuryStockAtTheEndOfFiscalYear !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NumberOfTreasuryStockAtTheEndOfFiscalYear)
           : null,
       average_number_of_shares:
-        statement.AverageNumberOfShares !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.AverageNumberOfShares !== undefined ? Number(statement.AverageNumberOfShares) : null,
       non_consolidated_net_sales:
-        statement.NonConsolidatedNetSales !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NonConsolidatedNetSales !== undefined ? Number(statement.NonConsolidatedNetSales) : null,
       non_consolidated_operating_profit:
         statement.NonConsolidatedOperatingProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NonConsolidatedOperatingProfit)
           : null,
       non_consolidated_ordinary_profit:
-        statement.NonConsolidatedOrdinaryProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.NonConsolidatedOrdinaryProfit !== undefined ? Number(statement.NonConsolidatedOrdinaryProfit) : null,
       non_consolidated_profit:
-        statement.NonConsolidatedProfit !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NonConsolidatedProfit !== undefined ? Number(statement.NonConsolidatedProfit) : null,
       non_consolidated_earnings_per_share:
         statement.NonConsolidatedEarningsPerShare !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NonConsolidatedEarningsPerShare)
           : null,
       non_consolidated_total_assets:
-        statement.NonConsolidatedTotalAssets !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NonConsolidatedTotalAssets !== undefined ? Number(statement.NonConsolidatedTotalAssets) : null,
       non_consolidated_equity:
-        statement.NonConsolidatedEquity !== undefined ? Number(statement.CashFlowsFromOperatingActivities) : null,
+        statement.NonConsolidatedEquity !== undefined ? Number(statement.NonConsolidatedEquity) : null,
       non_consolidated_equity_to_asset_ratio:
         statement.NonConsolidatedEquityToAssetRatio !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NonConsolidatedEquityToAssetRatio)
           : null,
       non_consolidated_book_value_per_share:
         statement.NonConsolidatedBookValuePerShare !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NonConsolidatedBookValuePerShare)
           : null,
       forecast_non_consolidated_net_sales_2nd_q:
         statement.ForecastNonConsolidatedNetSales2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedNetSales2ndQuarter)
           : null,
       forecast_non_consolidated_operating_profit_2nd_q:
         statement.ForecastNonConsolidatedOperatingProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedOperatingProfit2ndQuarter)
           : null,
       forecast_non_consolidated_ordinary_profit_2nd_q:
         statement.ForecastNonConsolidatedOrdinaryProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedOrdinaryProfit2ndQuarter)
           : null,
       forecast_non_consolidated_profit_2nd_q:
         statement.ForecastNonConsolidatedProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedProfit2ndQuarter)
           : null,
       forecast_non_consolidated_earnings_per_share_2nd_q:
         statement.ForecastNonConsolidatedEarningsPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedEarningsPerShare2ndQuarter)
           : null,
       next_year_forecast_non_consolidated_net_sales_2nd_q:
         statement.NextYearForecastNonConsolidatedNetSales2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedNetSales2ndQuarter)
           : null,
       next_year_forecast_non_consolidated_operating_profit_2nd_q:
         statement.NextYearForecastNonConsolidatedOperatingProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedOperatingProfit2ndQuarter)
           : null,
       next_year_forecast_non_consolidated_ordinary_profit_2nd_q:
         statement.NextYearForecastNonConsolidatedOrdinaryProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedOrdinaryProfit2ndQuarter)
           : null,
       next_year_forecast_non_consolidated_profit_2nd_q:
         statement.NextYearForecastNonConsolidatedProfit2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedProfit2ndQuarter)
           : null,
       next_year_forecast_non_consolidated_earnings_per_share_2nd_q:
         statement.NextYearForecastNonConsolidatedEarningsPerShare2ndQuarter !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedEarningsPerShare2ndQuarter)
           : null,
       forecast_non_consolidated_net_sales:
         statement.ForecastNonConsolidatedNetSales !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedNetSales)
           : null,
       forecast_non_consolidated_operating_profit:
         statement.ForecastNonConsolidatedOperatingProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedOperatingProfit)
           : null,
       forecast_non_consolidated_ordinary_profit:
         statement.ForecastNonConsolidatedOrdinaryProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedOrdinaryProfit)
           : null,
       forecast_non_consolidated_profit:
-        statement.ForecastNonConsolidatedProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
-          : null,
+        statement.ForecastNonConsolidatedProfit !== undefined ? Number(statement.ForecastNonConsolidatedProfit) : null,
       forecast_non_consolidated_earnings_per_share:
         statement.ForecastNonConsolidatedEarningsPerShare !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.ForecastNonConsolidatedEarningsPerShare)
           : null,
       next_year_forecast_non_consolidated_net_sales:
         statement.NextYearForecastNonConsolidatedNetSales !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedNetSales)
           : null,
       next_year_forecast_non_consolidated_operating_profit:
         statement.NextYearForecastNonConsolidatedOperatingProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedOperatingProfit)
           : null,
       next_year_forecast_non_consolidated_ordinary_profit:
         statement.NextYearForecastNonConsolidatedOrdinaryProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedOrdinaryProfit)
           : null,
       next_year_forecast_non_consolidated_profit:
         statement.NextYearForecastNonConsolidatedProfit !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedProfit)
           : null,
       next_year_forecast_non_consolidated_earnings_per_share:
         statement.NextYearForecastNonConsolidatedEarningsPerShare !== undefined
-          ? Number(statement.CashFlowsFromOperatingActivities)
+          ? Number(statement.NextYearForecastNonConsolidatedEarningsPerShare)
           : null,
     };
   });
