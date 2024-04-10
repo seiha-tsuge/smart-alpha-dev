@@ -141,6 +141,28 @@ export type GetFinancialStatementsResponse = {
   pagination_key: string;
 };
 
+export interface GetListedInfoRequest {
+  idToken: string;
+  code?: string;
+  date?: string;
+}
+
+export interface GetListedInfoResponse {
+  Date: string;
+  Code: string;
+  CompanyName: string;
+  CompanyNameEnglish: string;
+  Sector17Code: string;
+  Sector17CodeName: string;
+  Sector33Code: string;
+  Sector33CodeName: string;
+  ScaleCategory: string;
+  MarketCode: string;
+  MarketCodeName: string;
+  MarginCode: string;
+  MarginCodeName: string;
+}
+
 export interface IJQuantsApi {
   getRefreshToken(): Promise<GetRefreshTokenResponse>;
   getIdToken(refreshToken: string): Promise<GetIdTokenResponse>;
@@ -150,4 +172,5 @@ export interface IJQuantsApi {
     date,
     pagination_key,
   }: GetFinancialStatementsRequest): Promise<GetFinancialStatementsResponse>;
+  getListedInfo({ idToken, code, date }: GetListedInfoRequest): Promise<GetListedInfoResponse>;
 }
