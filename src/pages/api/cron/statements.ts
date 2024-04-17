@@ -38,6 +38,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
     JQuantsDataEntity = await postTokenUseCase.updateIdToken(JQuantsDataEntity);
   }
 
+  await db.logs.create({ data: {} });
+
   const today = new Date();
   const sixMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 6, today.getDate());
   const formattedDate = sixMonthsAgo.toISOString().slice(0, 10);
